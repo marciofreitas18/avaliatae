@@ -81,11 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const items = block.querySelectorAll('.question-item');
             items.forEach(item => {
                 const questionText = item.querySelector('label').innerText;
-                const val = item.querySelector('input').value;
+                const inputVal = item.querySelector('input').value;
                 const trItem = document.createElement('tr');
                 trItem.innerHTML = `
-                    <td class="td-desc">${questionText}</td>
-                    <td class="td-nota">${val !== '' ? val : '-'}</td>
+                    <td class="cell-desc">${questionText}</td>
+                    <td class="cell-nota">${inputVal !== '' ? inputVal : '-'}</td>
                 `;
                 tbody.appendChild(trItem);
             });
@@ -142,18 +142,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const printArea = document.getElementById('printArea');
         const siapeVal = document.getElementById('siape').value || 'servidor';
 
-        // Clonamos para gerar em container visível isolado
+        // Clona e fixa a largura em 100% (700px ideal para A4)
         const clone = printArea.cloneNode(true);
         clone.id = 'pdfTempContainer';
         clone.style.display = 'block';
-        clone.style.width = '750px';
+        clone.style.width = '700px';
+        clone.style.boxSizing = 'border-box';
         clone.style.margin = '0 auto';
         clone.style.backgroundColor = '#ffffff';
 
         document.body.appendChild(clone);
 
         const opt = {
-            margin:       [8, 8, 8, 8],
+            margin:       [10, 10, 10, 10],
             filename:     `avaliacao_uffs_${siapeVal}.pdf`,
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { scale: 2, useCORS: true, scrollY: 0 },
