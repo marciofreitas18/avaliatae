@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const blockMediadores = document.getElementById('blockMediadores');
     const rowPrintMediadores = document.getElementById('rowPrintMediadores');
     const btnDownloadPDF = document.getElementById('btnDownloadPDF');
-    const btnPrint = document.getElementById('btnPrint');
 
     function updateModalidadeUI() {
         const isAuto = document.querySelector('input[name="modalidade"]:checked').value === 'auto';
@@ -66,6 +65,34 @@ document.addEventListener('DOMContentLoaded', () => {
         input.addEventListener('input', calculateScores);
     });
 
+    // Mapeia todas as notas individuais para a tabela do PDF
+    function generateDetailedNotesTable(isAuto) {
+        const tbody = document.getElementById('pTableDetailedNotes');
+        tbody.innerHTML = '';
+
+        const dimBlocks = document.querySelectorAll('.dimensao-block');
+        dimBlocks.forEach(block => {
+            if (!isAuto && block.id === 'blockMediadores') return;
+
+            const title = block.querySelector('h4').innerText;
+            const trTitle = document.createElement('tr');
+            trTitle.innerHTML = `<td colspan="2" class="sub-dim-title">${title}</td>`;
+            tbody.appendChild(trTitle);
+
+            const items = block.querySelectorAll('.question-item');
+            items.forEach(item => {
+                const questionText = item.querySelector('label').innerText;
+                const val = item.querySelector('input').value;
+                const trItem = document.createElement('tr');
+                trItem.innerHTML = `
+                    <td>${questionText}</td>
+                    <td style="text-align: center; font-weight: bold;">${val !== '' ? val : '-'}</td>
+                `;
+                tbody.appendChild(trItem);
+            });
+        });
+    }
+
     function prepareReportData() {
         const scores = calculateScores();
 
@@ -77,6 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('pOrgaoDestino').innerText = document.getElementById('orgaoDestino').value || 'Não Informado';
         document.getElementById('pNomeChefia').innerText = document.getElementById('nomeChefia').value || 'Não Informado';
         document.getElementById('pCargoChefia').innerText = document.getElementById('cargoChefia').value || 'Não Informado';
+
+        generateDetailedNotesTable(scores.isAuto);
 
         document.getElementById('pMediaConhecimentos').innerText = scores.avgConhecimentos.toFixed(1);
         document.getElementById('pPondConhecimentos').innerText = scores.pondConhecimentos.toFixed(2);
@@ -103,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return scores;
     }
 
-    // Gerar e Baixar PDF diretamente
+    // Ação principal: Gerar e Baixar arquivo PDF compilado
     btnDownloadPDF.addEventListener('click', () => {
         if (!form.checkValidity()) {
             form.reportValidity();
@@ -112,30 +141,18 @@ document.addEventListener('DOMContentLoaded', () => {
         prepareReportData();
 
         const element = document.getElementById('printArea');
-        element.style.display = 'block';
-
         const siapeVal = document.getElementById('siape').value || 'servidor';
+
         const opt = {
-            margin:       10,
+            margin:       [8, 8, 8, 8],
             filename:     `avaliacao_uffs_${siapeVal}.pdf`,
             image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            html2canvas:  { scale: 2, useCORS: true },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
         };
 
-        html2pdf().set(opt).from(element).save().then(() => {
-            element.style.display = 'none';
-        });
-    });
-
-    // Impressão nativa do navegador
-    btnPrint.addEventListener('click', () => {
-        if (!form.checkValidity()) {
-            form.reportValidity();
-            return;
-        }
-        prepareReportData();
-        window.print();
+        html2pdf().set(opt).from(element).save();
     });
 
     updateModalidadeUI();
