@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avaliação de Desempenho - Servidores Cedidos UFFS</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Biblioteca para download direto de PDF sem dependência de impressão do SO -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <header class="header-uffs no-print">
@@ -118,7 +120,7 @@
                         <input type="number" min="0" max="10" step="0.5" class="score-input input-habilidades" required>
                     </div>
                     <div class="question-item">
-                        <label>4. Toma decisões em situações de trabalho que sejam de sua competência e encaminha adequadamente as situações que fogem de sua alçada decisória</label>
+                        <label>4. Toma decisões em situações de trabalho que Sejam de sua competência e encaminha adequadamente as situações que fogem de sua alçada decisória</label>
                         <input type="number" min="0" max="10" step="0.5" class="score-input input-habilidades" required>
                     </div>
                     <div class="question-item">
@@ -241,12 +243,13 @@
             </section>
 
             <div class="actions-area no-print">
-                <button type="button" id="btnGenerate" class="btn-primary">Gerar Relatório para Impressão / PDF</button>
+                <button type="button" id="btnDownloadPDF" class="btn-primary">Baixar Relatório em PDF</button>
+                <button type="button" id="btnPrint" class="btn-secondary">Imprimir Diretamente</button>
             </div>
         </form>
 
-        <!-- Relatório Formatado em Folha A4 para PDF/Impressão -->
-        <div id="printArea" class="print-only">
+        <!-- Documento de Resumo A4 para Exportação PDF / Impressão -->
+        <div id="printArea">
             <div class="print-header">
                 <h2>UNIVERSIDADE FEDERAL DA FRONTEIRA SUL - UFFS</h2>
                 <h3>ANEXO II - FORMULÁRIO DE AVALIAÇÃO DE DESEMPENHO TAE E DOCENTES GESTORES</h3>
@@ -277,7 +280,7 @@
             <table class="print-table margin-top">
                 <thead>
                     <tr>
-                        <th class="table-section-title">2. RESUMO DAS DIMENSÕES</th>
+                        <th class="table-section-title">2. RESUMO DAS DIMENSÕES E PONTUAÇÃO</th>
                         <th class="table-section-title" style="text-align: center;">MÉDIA SIMPLES (0-10)</th>
                         <th class="table-section-title" style="text-align: center;">PONTUAÇÃO PONDERADA</th>
                     </tr>
