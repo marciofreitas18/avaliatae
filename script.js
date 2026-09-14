@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
         input.addEventListener('input', calculateScores);
     });
 
-    // Mapeia todas as notas individuais para a tabela do PDF
     function generateDetailedNotesTable(isAuto) {
         const tbody = document.getElementById('pTableDetailedNotes');
         tbody.innerHTML = '';
@@ -132,27 +131,37 @@ document.addEventListener('DOMContentLoaded', () => {
         return scores;
     }
 
-    // Ação principal: Gerar e Baixar arquivo PDF compilado
     btnDownloadPDF.addEventListener('click', () => {
         if (!form.checkValidity()) {
             form.reportValidity();
             return;
         }
+
         prepareReportData();
 
+        const pdfWrapper = document.getElementById('pdfRenderWrapper');
         const element = document.getElementById('printArea');
         const siapeVal = document.getElementById('siape').value || 'servidor';
 
+        // Torna visível na viewport para a renderização do canvas
+        pdfWrapper.style.display = 'block';
+
         const opt = {
-            margin:       [8, 8, 8, 8],
+            margin:       [10, 10, 10, 10],
             filename:     `avaliacao_uffs_${siapeVal}.pdf`,
             image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, useCORS: true },
+            html2canvas:  { scale: 2, useCORS: true, logging: false },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
             pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
         };
 
-        html2pdf().set(opt).from(element).save();
+        html2pdf().set(opt).from(element).save().then(() => {
+            // Oculta novamente após a finalização da gravação do PDF
+            pdfWrapper.style.display = 'none';
+        }).catch(err => {
+            pdfWrapper.style.display = 'none';
+            console.error('Erro ao gerar PDF:', err);
+        });
     });
 
     updateModalidadeUI();
