@@ -9,58 +9,58 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', sans-serif; }
-body { background-color: var(--uffs-cinza-fundo); color: var(--uffs-cinza-texto); line-height: 1.5; }
+body { background-color: var(--uffs-cinza-fundo); color: var(--uffs-cinza-texto); line-height: 1.4; }
 
 /* Cabeçalho Web */
 .header-uffs { 
     background-color: var(--uffs-verde-principal); 
     color: var(--uffs-branco); 
-    padding: 24px 0;
+    padding: 20px 0;
     border-bottom: 5px solid var(--uffs-amarelo-destaque);
 }
 .header-container { max-width: 920px; margin: 0 auto; padding: 0 20px; }
-.brand-area { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
+.brand-area { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
 .logo-box { 
     background-color: var(--uffs-branco); 
     color: var(--uffs-verde-principal); 
     padding: 6px 14px; 
     border-radius: 4px; 
     font-weight: 900; 
-    font-size: 1.4rem; 
+    font-size: 1.3rem; 
     letter-spacing: 2px;
 }
-.institution-title h1 { font-size: 1.25rem; font-weight: bold; letter-spacing: 0.5px; }
+.institution-title h1 { font-size: 1.2rem; font-weight: bold; }
 .institution-title p { font-size: 0.85rem; opacity: 0.9; }
-.doc-title { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 10px; }
-.doc-title h2 { font-size: 1.1rem; }
+.doc-title { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 8px; margin-top: 8px; }
+.doc-title h2 { font-size: 1.05rem; }
 .doc-title span { font-size: 0.8rem; opacity: 0.85; }
 
 /* Form Web */
-.main-container { max-width: 920px; margin: 25px auto; padding: 0 20px; }
+.main-container { max-width: 920px; margin: 20px auto; padding: 0 15px; }
 .card { 
     background: var(--uffs-branco); 
     border-radius: 6px; 
-    padding: 20px; 
-    margin-bottom: 20px; 
+    padding: 18px; 
+    margin-bottom: 18px; 
     box-shadow: 0 2px 6px rgba(0,0,0,0.06); 
     border-top: 4px solid var(--uffs-verde-principal); 
 }
 .modalidade-card { border-top-color: var(--uffs-azul-institucional); }
 .card-header { 
     color: var(--uffs-verde-principal); 
-    font-size: 1.1rem; 
-    margin-bottom: 14px; 
+    font-size: 1.05rem; 
+    margin-bottom: 12px; 
     border-bottom: 2px solid var(--uffs-cinza-fundo); 
-    padding-bottom: 6px; 
+    padding-bottom: 4px; 
 }
 
-.radio-group { display: flex; gap: 15px; margin-top: 10px; flex-wrap: wrap; }
+.radio-group { display: flex; gap: 15px; margin-top: 8px; flex-wrap: wrap; }
 .radio-option { 
     display: flex; 
     align-items: center; 
     gap: 8px; 
     background: var(--uffs-cinza-fundo); 
-    padding: 12px 16px; 
+    padding: 10px 14px; 
     border-radius: 4px; 
     cursor: pointer; 
     flex: 1; 
@@ -72,68 +72,48 @@ body { background-color: var(--uffs-cinza-fundo); color: var(--uffs-cinza-texto)
 }
 .radio-option input[type="radio"] { accent-color: var(--uffs-verde-principal); width: 16px; height: 16px; }
 
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 @media (max-width: 650px) { .grid-2 { grid-template-columns: 1fr; } }
 
 .form-group { display: flex; flex-direction: column; }
 .full-width { grid-column: span 2; }
 label { font-weight: bold; margin-bottom: 4px; font-size: 0.85rem; color: #444; }
 input[type="text"], input[type="number"], textarea { 
-    padding: 9px; 
+    padding: 8px; 
     border: 1px solid var(--uffs-cinza-borda); 
     border-radius: 4px; 
     font-size: 0.9rem; 
-}
-input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
-    outline: none;
-    border-color: var(--uffs-verde-principal);
-    box-shadow: 0 0 0 2px rgba(0, 74, 47, 0.15);
 }
 
 .scale-info { 
     background: #E8F1EC; 
     border-left: 4px solid var(--uffs-amarelo-destaque); 
-    padding: 10px 14px; 
+    padding: 8px 12px; 
     font-size: 0.85rem; 
-    margin-bottom: 15px; 
+    margin-bottom: 12px; 
     color: var(--uffs-verde-principal);
 }
-.dimensao-block { background: var(--uffs-cinza-fundo); padding: 14px; border-radius: 4px; margin-bottom: 15px; }
-.dimensao-block h4 { color: var(--uffs-verde-principal); margin-bottom: 12px; font-size: 0.95rem; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
-.question-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 10px; }
+.dimensao-block { background: var(--uffs-cinza-fundo); padding: 12px; border-radius: 4px; margin-bottom: 12px; }
+.dimensao-block h4 { color: var(--uffs-verde-principal); margin-bottom: 10px; font-size: 0.9rem; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+.question-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 10px; }
 .question-item label { font-weight: normal; font-size: 0.85rem; flex: 1; }
-.score-input { width: 75px; text-align: center; font-weight: bold; }
+.score-input { width: 70px; text-align: center; font-weight: bold; }
 
-.summary-card { border-top-color: var(--uffs-amarelo-destaque); }
-.score-summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.9rem; }
-.total-score-box { 
-    margin-top: 15px; 
-    padding-top: 12px; 
-    border-top: 2px solid var(--uffs-verde-principal); 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-}
-.total-score-box strong { font-size: 1.5rem; color: var(--uffs-verde-principal); }
-
-.actions-area { text-align: center; margin: 30px 0; }
+.actions-area { text-align: center; margin: 25px 0; }
 .btn-primary { 
     background-color: var(--uffs-verde-principal); 
     color: white; 
     border: none; 
-    padding: 14px 32px; 
+    padding: 12px 28px; 
     font-size: 1rem; 
     font-weight: bold; 
     border-radius: 4px; 
     cursor: pointer; 
-    transition: background 0.2s;
-    border-bottom: 3px solid #002D1D;
 }
 .btn-primary:hover { background-color: #003622; }
-.margin-top { margin-top: 15px; }
 
 /* ==========================================================================
-   ESTILO DO PDF (ESTILO NORMAL EM PRETO E BRANCO COM QUEBRAS CORRETAS)
+   ESTILO DO PDF (REGRAS ESTREITAS E ALINHAMENTO CONTROLADO)
    ========================================================================== */
 
 #pdfRenderWrapper {
@@ -141,15 +121,15 @@ input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
 }
 
 .pdf-container { 
-    background: white; 
-    padding: 15px; 
+    background: #ffffff; 
+    padding: 10px; 
     color: #000000; 
     font-size: 8pt; 
 }
 
 .print-header { 
     text-align: center; 
-    margin-bottom: 10px; 
+    margin-bottom: 8px; 
 }
 
 .pdf-brand-bar { 
@@ -160,13 +140,12 @@ input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
 }
 
 .pdf-brand-bar h2 { 
-    font-size: 10pt; 
-    letter-spacing: 0.5px; 
+    font-size: 9.5pt; 
     font-weight: bold;
 }
 
 .print-header h3 { 
-    font-size: 9pt; 
+    font-size: 8.5pt; 
     margin: 2px 0; 
     color: #000000; 
     font-weight: bold;
@@ -174,41 +153,55 @@ input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
 
 .badge-modalidade { 
     display: inline-block; 
-    padding: 2px 8px; 
+    padding: 2px 6px; 
     background: #FFFFFF; 
     color: #000000; 
     font-weight: bold; 
     font-size: 7.5pt; 
-    border-radius: 2px; 
-    margin-top: 2px;
     border: 1px solid #000000;
 }
 
+/* FORMATAÇÃO E ALINHAMENTO RIGOROSO DAS TABELAS */
 .print-table { 
     width: 100%; 
     border-collapse: collapse; 
-    margin-bottom: 8px; 
-    page-break-inside: auto;
+    margin-bottom: 6px; 
+    table-layout: fixed; /* Força respeitar a largura das colunas */
 }
 
 .print-table tr {
-    page-break-inside: avoid;
-    page-break-after: auto;
+    page-break-inside: avoid; /* Não quebra linhas ao meio */
 }
 
 .print-table td, .print-table th { 
     border: 1px solid #000000; 
-    padding: 4px 5px; 
-    font-size: 8pt; 
+    padding: 3px 5px; 
+    font-size: 7.5pt; 
     color: #000000;
+    line-height: 1.2;
+    vertical-align: middle;
+    word-wrap: break-word; /* Quebra texto longo em várias linhas */
+    overflow-wrap: break-word;
+}
+
+/* Alinhamento de colunas de notas e descritores */
+.print-table td.td-desc {
+    width: 88%;
+    text-align: left;
+}
+
+.print-table td.td-nota {
+    width: 12%;
+    text-align: center;
+    font-weight: bold;
 }
 
 .table-section-title { 
-    background-color: #333333; 
+    background-color: #000000; 
     color: #ffffff !important; 
     text-align: left; 
     font-size: 8pt; 
-    padding: 4px 5px; 
+    padding: 3px 5px; 
     font-weight: bold;
 }
 
@@ -216,6 +209,7 @@ input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
     background-color: #E6E6E6; 
     font-weight: bold; 
     color: #000000; 
+    text-align: left;
 }
 
 .table-total-row { 
@@ -225,8 +219,8 @@ input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
 .print-obs { 
     border: 1px solid #000000; 
     padding: 6px; 
-    min-height: 40px; 
-    font-size: 8pt; 
+    min-height: 35px; 
+    font-size: 7.5pt; 
     color: #000000;
     page-break-inside: avoid;
 }
@@ -234,14 +228,14 @@ input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
 .signatures-container { 
     display: flex; 
     justify-content: space-between; 
-    margin-top: 25px; 
+    margin-top: 20px; 
     page-break-inside: avoid; 
 }
 
 .signature-box { 
     width: 45%; 
     text-align: center; 
-    font-size: 8pt; 
+    font-size: 7.5pt; 
     color: #000000;
 }
 
