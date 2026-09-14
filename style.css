@@ -230,19 +230,20 @@ input[type="text"], input[type="number"], textarea {
 
 .signatures-container { 
     display: flex; 
-    justify-content: space-between; 
-    margin-top: 25px; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 30px; 
     page-break-inside: avoid; 
 }
 
 .signature-box { 
-    width: 45%; 
+    width: 60%; 
     text-align: center; 
-    font-size: 7.5pt; 
+    font-size: 8pt; 
     color: #000000;
 }
 
 .signature-box .line { 
     border-top: 1px solid #000000; 
-    margin-bottom: 4px; 
+    margin-bottom: 6px; 
 }
