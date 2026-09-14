@@ -5,6 +5,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const rowPrintMediadores = document.getElementById('rowPrintMediadores');
     const btnDownloadPDF = document.getElementById('btnDownloadPDF');
 
+    // Configura o step = 1 e os limites de 0 a 10 em todos os campos de nota
+    const scoreInputs = document.querySelectorAll('.score-input');
+    scoreInputs.forEach(input => {
+        input.setAttribute('type', 'number');
+        input.setAttribute('min', '0');
+        input.setAttribute('max', '10');
+        input.setAttribute('step', '1');
+
+        // Impede digitação de notas maiores que 10 ou menores que 0
+        input.addEventListener('input', () => {
+            if (parseFloat(input.value) > 10) input.value = 10;
+            if (parseFloat(input.value) < 0) input.value = 0;
+            calculateScores();
+        });
+    });
+
     function updateModalidadeUI() {
         const isAuto = document.querySelector('input[name="modalidade"]:checked').value === 'auto';
         if (isAuto) {
@@ -61,9 +77,20 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    document.querySelectorAll('.score-input').forEach(input => {
-        input.addEventListener('input', calculateScores);
-    });
+    // Verifica se todos os campos visíveis possuem nota antes de gerar o PDF
+    function validateAllScoresFilled(isAuto) {
+        const requiredInputs = document.querySelectorAll('.score-input');
+        for (let input of requiredInputs) {
+            // Se for avaliação da chefia e o campo for de mediadores, ignora
+            if (!isAuto && input.classList.contains('input-mediadores')) {
+                continue;
+            }
+            if (input.value === '' || isNaN(parseFloat(input.value))) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     function generateDetailedNotesTable(isAuto) {
         const tbody = document.getElementById('pTableDetailedNotes');
@@ -85,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const trItem = document.createElement('tr');
                 trItem.innerHTML = `
                     <td class="cell-desc">${questionText}</td>
-                    <td class="cell-nota">${inputVal !== '' ? inputVal : '-'}</td>
+                    <td class="cell-nota">${inputVal !== '' ? parseInt(inputVal, 10) : '-'}</td>
                 `;
                 tbody.appendChild(trItem);
             });
@@ -94,6 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function prepareReportData() {
         const scores = calculateScores();
+
+        // Data atual automática
+        const dataHoje = new Date().toLocaleDateString('pt-BR');
 
         document.getElementById('pModalidadeBadge').innerText = scores.isAuto ? 'AUTOAVALIAÇÃO' : 'AVALIAÇÃO DA CHEFIA IMEDIATA';
         document.getElementById('pNomeServidor').innerText = document.getElementById('nomeServidor').value || 'Não Informado';
@@ -128,26 +158,52 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('pSigServidor').innerText = document.getElementById('nomeServidor').value || 'Assinatura do Servidor';
         document.getElementById('pSigChefia').innerText = document.getElementById('nomeChefia').value || 'Assinatura da Chefia';
 
+        // Preenche data automática nos locais de assinatura/emissão
+        const dataElements = document.querySelectorAll('.pDataAtual');
+        dataElements.forEach(el => el.innerText = dataHoje);
+
         return scores;
     }
 
+    // Função para sanitizar e formatar o nome no arquivo
+    function formatFileName(name) {
+        return name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-0]/g, '_');
+    }
+
     btnDownloadPDF.addEventListener('click', async () => {
+        const isAuto = document.querySelector('input[name="modalidade"]:checked').value === 'auto';
+
+        // 1. Validação dos campos de identificação obrigatórios do formulário
         if (!form.checkValidity()) {
             form.reportValidity();
+            return;
+        }
+
+        // 2. Validação se TODAS as notas foram atribuídas
+        if (!validateAllScoresFilled(isAuto)) {
+            alert('Por favor, preencha todas as notas da avaliação antes de gerar o relatório PDF.');
             return;
         }
 
         prepareReportData();
 
         const printArea = document.getElementById('printArea');
-        const siapeVal = document.getElementById('siape').value || 'servidor';
+        const nomeServidor = document.getElementById('nomeServidor').value || 'servidor';
+        const nomeChefia = document.getElementById('nomeChefia').value || 'chefia';
 
-        // Clona e fixa a largura em 100% (700px ideal para A4)
+        // Definição do nome do arquivo PDF impresso
+        let filenamePDF = '';
+        if (isAuto) {
+            filenamePDF = `autoavaliacao_${formatFileName(nomeServidor)}.pdf`;
+        } else {
+            filenamePDF = `avaliacao_${formatFileName(nomeChefia)}_${formatFileName(nomeServidor)}.pdf`;
+        }
+
+        // Clonagem para geração sem falhas
         const clone = printArea.cloneNode(true);
         clone.id = 'pdfTempContainer';
         clone.style.display = 'block';
         clone.style.width = '700px';
-        clone.style.boxSizing = 'border-box';
         clone.style.margin = '0 auto';
         clone.style.backgroundColor = '#ffffff';
 
@@ -155,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const opt = {
             margin:       [10, 10, 10, 10],
-            filename:     `avaliacao_uffs_${siapeVal}.pdf`,
+            filename:     filenamePDF,
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { scale: 2, useCORS: true, scrollY: 0 },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
