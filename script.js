@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const title = block.querySelector('h4').innerText;
             const trTitle = document.createElement('tr');
-            trTitle.className = 'html2pdf__page-break';
             trTitle.innerHTML = `<td colspan="2" class="sub-dim-title">${title}</td>`;
             tbody.appendChild(trTitle);
 
@@ -85,8 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const val = item.querySelector('input').value;
                 const trItem = document.createElement('tr');
                 trItem.innerHTML = `
-                    <td>${questionText}</td>
-                    <td style="text-align: center; font-weight: bold;">${val !== '' ? val : '-'}</td>
+                    <td class="td-desc">${questionText}</td>
+                    <td class="td-nota">${val !== '' ? val : '-'}</td>
                 `;
                 tbody.appendChild(trItem);
             });
@@ -143,17 +142,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const printArea = document.getElementById('printArea');
         const siapeVal = document.getElementById('siape').value || 'servidor';
 
-        // Clonamos o nó de impressão para isolar a captura
+        // Clonamos para gerar em container visível isolado
         const clone = printArea.cloneNode(true);
         clone.id = 'pdfTempContainer';
         clone.style.display = 'block';
-        clone.style.width = '790px';
+        clone.style.width = '750px';
         clone.style.margin = '0 auto';
+        clone.style.backgroundColor = '#ffffff';
 
         document.body.appendChild(clone);
 
         const opt = {
-            margin:       [10, 10, 10, 10],
+            margin:       [8, 8, 8, 8],
             filename:     `avaliacao_uffs_${siapeVal}.pdf`,
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { scale: 2, useCORS: true, scrollY: 0 },
@@ -166,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (err) {
             console.error('Erro ao gerar PDF:', err);
         } finally {
-            // Remove o clone temporário do DOM
             if (document.getElementById('pdfTempContainer')) {
                 document.body.removeChild(clone);
             }
