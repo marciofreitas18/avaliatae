@@ -5,26 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avaliação de Desempenho - Servidores Cedidos UFFS</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Biblioteca para download direto de PDF sem dependência de impressão do SO -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
-    <header class="header-uffs no-print">
+    <header class="header-uffs">
         <div class="header-container">
-            <div class="logo-area">
-                <h1>UFFS</h1>
-                <span>Universidade Federal da Fronteira Sul</span>
+            <div class="brand-area">
+                <div class="logo-box">
+                    <span class="logo-uffs">UFFS</span>
+                </div>
+                <div class="institution-title">
+                    <h1>UNIVERSIDADE FEDERAL DA FRONTEIRA SUL</h1>
+                    <p>Diretoria de Gestão de Pessoas - PROGESP</p>
+                </div>
             </div>
-            <h2>Formulário de Avaliação de Desempenho - Servidores Cedidos</h2>
-            <p>Resolução nº 48/CONSUNI CAPGP/UFFS/2022 - Anexo II</p>
+            <div class="doc-title">
+                <h2>Avaliação de Desempenho - Servidores Cedidos</h2>
+                <span>Resolução nº 48/CONSUNI CAPGP/UFFS/2022 - Anexo II</span>
+            </div>
         </div>
     </header>
 
     <main class="main-container">
         <form id="evalForm">
             <!-- 1. Modalidade -->
-            <section class="card modalidade-card no-print">
-                <h3>1. Modalidade de Avaliação</h3>
+            <section class="card modalidade-card">
+                <h3 class="card-header">1. Modalidade de Avaliação</h3>
                 <div class="radio-group">
                     <label class="radio-option">
                         <input type="radio" name="modalidade" value="auto" checked>
@@ -39,7 +45,7 @@
 
             <!-- 2. Dados Gerais -->
             <section class="card">
-                <h3>2. Dados de Identificação</h3>
+                <h3 class="card-header">2. Dados de Identificação</h3>
                 <div class="grid-2">
                     <div class="form-group">
                         <label for="nomeServidor">Nome do Servidor:</label>
@@ -55,7 +61,7 @@
                     </div>
                     <div class="form-group">
                         <label for="periodoAvaliacao">Calendário / Período de Avaliação:</label>
-                        <input type="text" id="periodoAvaliacao" placeholder="Ex: 2025" required>
+                        <input type="text" id="periodoAvaliacao" placeholder="Ex: 2025/2026" required>
                     </div>
                     <div class="form-group">
                         <label for="orgaoOrigem">Órgão de Origem:</label>
@@ -76,148 +82,59 @@
                 </div>
             </section>
 
-            <!-- 3. Dimensões de Avaliação -->
-            <section class="card no-print">
-                <h3>3. Dimensões de Desempenho (Notas de 0 a 10)</h3>
+            <!-- 3. Dimensões -->
+            <section class="card">
+                <h3 class="card-header">3. Dimensões de Desempenho (Notas de 0 a 10)</h3>
                 <div class="scale-info">
-                    <strong>Referência de Pontuação:</strong> 0 a 3: Insatisfatório | 4 a 5: Pouco Satisfatório | 6 a 8: Satisfatório | 9 a 10: Muito Satisfatório
+                    <strong>Escala de Avaliação:</strong> 0 a 3: Insatisfatório | 4 a 5: Pouco Satisfatório | 6 a 8: Satisfatório | 9 a 10: Muito Satisfatório
                 </div>
 
-                <!-- Conhecimentos -->
                 <div class="dimensao-block">
                     <h4>Conhecimentos</h4>
-                    <div class="question-item">
-                        <label>1. Conhece os processos de trabalho que estão sob sua responsabilidade</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-conhecimentos" required>
-                    </div>
-                    <div class="question-item">
-                        <label>2. Conhece as ferramentas necessárias para realizar as atividades sob sua responsabilidade</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-conhecimentos" required>
-                    </div>
-                    <div class="question-item">
-                        <label>3. Conhece as leis e as normas que regulamentam o seu trabalho</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-conhecimentos" required>
-                    </div>
-                    <div class="question-item">
-                        <label>4. Busca novos conhecimentos, por meio de atividades de capacitação, visando melhorar seu desempenho</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-conhecimentos" required>
-                    </div>
+                    <div class="question-item"><label>1. Conhece os processos de trabalho que estão sob sua responsabilidade</label><input type="number" min="0" max="10" step="0.5" class="score-input input-conhecimentos" required></div>
+                    <div class="question-item"><label>2. Conhece as ferramentas necessárias para realizar as atividades sob sua responsabilidade</label><input type="number" min="0" max="10" step="0.5" class="score-input input-conhecimentos" required></div>
+                    <div class="question-item"><label>3. Conhece as leis e as normas que regulamentam o seu trabalho</label><input type="number" min="0" max="10" step="0.5" class="score-input input-conhecimentos" required></div>
+                    <div class="question-item"><label>4. Busca novos conhecimentos, por meio de atividades de capacitação, visando melhorar seu desempenho</label><input type="number" min="0" max="10" step="0.5" class="score-input input-conhecimentos" required></div>
                 </div>
 
-                <!-- Habilidades -->
                 <div class="dimensao-block">
                     <h4>Habilidades</h4>
-                    <div class="question-item">
-                        <label>1. Desenvolve suas atividades de forma autônoma, sem necessidade de orientações constantes</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-habilidades" required>
-                    </div>
-                    <div class="question-item">
-                        <label>2. Organiza adequadamente suas atividades, priorizando aquelas de maior urgência, visando executá-las de forma eficiente e eficaz</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-habilidades" required>
-                    </div>
-                    <div class="question-item">
-                        <label>3. Produz volume de trabalho proporcional à sua complexidade e aos recursos disponíveis, racionalizando o tempo na execução das atividades</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-habilidades" required>
-                    </div>
-                    <div class="question-item">
-                        <label>4. Toma decisões em situações de trabalho que Sejam de sua competência e encaminha adequadamente as situações que fogem de sua alçada decisória</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-habilidades" required>
-                    </div>
-                    <div class="question-item">
-                        <label>5. Compromete-se com os planos e atribuições setoriais e individuais</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-habilidades" required>
-                    </div>
+                    <div class="question-item"><label>1. Desenvolve suas atividades de forma autônoma, sem necessidade de orientações constantes</label><input type="number" min="0" max="10" step="0.5" class="score-input input-habilidades" required></div>
+                    <div class="question-item"><label>2. Organiza adequadamente suas atividades, priorizando aquelas de maior urgência, visando executá-las de forma eficiente e eficaz</label><input type="number" min="0" max="10" step="0.5" class="score-input input-habilidades" required></div>
+                    <div class="question-item"><label>3. Produz volume de trabalho proporcional à sua complexidade e aos recursos disponíveis, racionalizando o tempo na execução das atividades</label><input type="number" min="0" max="10" step="0.5" class="score-input input-habilidades" required></div>
+                    <div class="question-item"><label>4. Toma decisões em situações de trabalho que sejam de sua competência e encaminha adequadamente as situações que fogem de sua alçada decisória</label><input type="number" min="0" max="10" step="0.5" class="score-input input-habilidades" required></div>
+                    <div class="question-item"><label>5. Compromete-se com os planos e atribuições setoriais e individuais</label><input type="number" min="0" max="10" step="0.5" class="score-input input-habilidades" required></div>
                 </div>
 
-                <!-- Metas -->
                 <div class="dimensao-block">
                     <h4>Metas</h4>
-                    <div class="question-item">
-                        <label>1. Atinge as metas conforme planejado</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-metas" required>
-                    </div>
-                    <div class="question-item">
-                        <label>2. Atinge as metas com a qualidade esperada</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-metas" required>
-                    </div>
-                    <div class="question-item">
-                        <label>3. Atinge as metas dentro do prazo estipulado</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-metas" required>
-                    </div>
+                    <div class="question-item"><label>1. Atinge as metas conforme planejado</label><input type="number" min="0" max="10" step="0.5" class="score-input input-metas" required></div>
+                    <div class="question-item"><label>2. Atinge as metas com a qualidade esperada</label><input type="number" min="0" max="10" step="0.5" class="score-input input-metas" required></div>
+                    <div class="question-item"><label>3. Atinge as metas dentro do prazo estipulado</label><input type="number" min="0" max="10" step="0.5" class="score-input input-metas" required></div>
                 </div>
 
-                <!-- Comportamentos / Atitudes -->
                 <div class="dimensao-block">
                     <h4>Comportamentos e Atitudes</h4>
-                    <div class="question-item">
-                        <label>1. Relaciona-se respeitosamente com a chefia, demais servidores e com o público</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required>
-                    </div>
-                    <div class="question-item">
-                        <label>2. Respeita a diversidade</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required>
-                    </div>
-                    <div class="question-item">
-                        <label>3. Demonstra interesse no desempenho de suas atribuições</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required>
-                    </div>
-                    <div class="question-item">
-                        <label>4. É assíduo e pontual em seus compromissos e responsabilidades</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required>
-                    </div>
-                    <div class="question-item">
-                        <label>5. Tem postura proativa na utilização de seus conhecimentos e habilidades para o alcance das metas planejadas</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required>
-                    </div>
-                    <div class="question-item">
-                        <label>6. É capaz de identificar problemas e se oferecer de modo oportuno para ajudar</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required>
-                    </div>
-                    <div class="question-item">
-                        <label>7. Apresenta ideias e sugestões para melhoria dos processos com os quais trabalha</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required>
-                    </div>
-                    <div class="question-item">
-                        <label>8. Coopera com o desenvolvimento de um bom clima organizacional na unidade</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required>
-                    </div>
-                    <div class="question-item">
-                        <label>9. Comunica-se com clareza e respeito com a chefia, com os demais servidores e com o público</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required>
-                    </div>
-                    <div class="question-item">
-                        <label>10. Zela pelo patrimônio da instituição, primando pela economicidade no uso dos materiais e pela eficiência na conservação dos equipamentos</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required>
-                    </div>
-                    <div class="question-item">
-                        <label>11. Respeita a hierarquia funcional</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required>
-                    </div>
-                    <div class="question-item">
-                        <label>12. Resguarda fatos e informações de interesse da administração, sobretudo os de caráter sigiloso</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required>
-                    </div>
+                    <div class="question-item"><label>1. Relaciona-se respeitosamente com a chefia, demais servidores e com o público</label><input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required></div>
+                    <div class="question-item"><label>2. Respeita a diversidade</label><input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required></div>
+                    <div class="question-item"><label>3. Demonstra interesse no desempenho de suas atribuições</label><input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required></div>
+                    <div class="question-item"><label>4. É assíduo e pontual em seus compromissos e responsabilidades</label><input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required></div>
+                    <div class="question-item"><label>5. Tem postura proativa na utilização de seus conhecimentos e habilidades para o alcance das metas planejadas</label><input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required></div>
+                    <div class="question-item"><label>6. É capaz de identificar problemas e se oferecer de modo oportuno para ajudar</label><input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required></div>
+                    <div class="question-item"><label>7. Apresenta ideias e sugestões para melhoria dos processos com os quais trabalha</label><input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required></div>
+                    <div class="question-item"><label>8. Coopera com o desenvolvimento de um bom clima organizacional na unidade</label><input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required></div>
+                    <div class="question-item"><label>9. Comunica-se com clareza e respeito com a chefia, com os demais servidores e com o público</label><input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required></div>
+                    <div class="question-item"><label>10. Zela pelo patrimônio da instituição, primando pela economicidade no uso dos materiais e pela eficiência na conservação dos equipamentos</label><input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required></div>
+                    <div class="question-item"><label>11. Respeita a hierarquia funcional</label><input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required></div>
+                    <div class="question-item"><label>12. Resguarda fatos e informações de interesse da administração, sobretudo os de caráter sigiloso</label><input type="number" min="0" max="10" step="0.5" class="score-input input-comportamentos" required></div>
                 </div>
 
-                <!-- Mediadores de Desempenho (Exclusivo Autoavaliação) -->
                 <div class="dimensao-block" id="blockMediadores">
-                    <h4>Mediadores de Desempenho (Uso Institucional - Não impacta na Nota)</h4>
-                    <div class="question-item">
-                        <label>1. Planejamento proposto para o desenvolvimento de suas atividades</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-mediadores">
-                    </div>
-                    <div class="question-item">
-                        <label>2. Atividades de capacitação oferecidas pela instituição</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-mediadores">
-                    </div>
-                    <div class="question-item">
-                        <label>3. Condições das instalações físicas, equipamentos e material de expediente, considerando a modalidade de trabalho</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-mediadores">
-                    </div>
-                    <div class="question-item">
-                        <label>4. Relações interpessoais no setor de trabalho</label>
-                        <input type="number" min="0" max="10" step="0.5" class="score-input input-mediadores">
-                    </div>
+                    <h4>Mediadores de Desempenho (Uso Institucional)</h4>
+                    <div class="question-item"><label>1. Planejamento proposto para o desenvolvimento de suas atividades</label><input type="number" min="0" max="10" step="0.5" class="score-input input-mediadores"></div>
+                    <div class="question-item"><label>2. Atividades de capacitação oferecidas pela instituição</label><input type="number" min="0" max="10" step="0.5" class="score-input input-mediadores"></div>
+                    <div class="question-item"><label>3. Condições das instalações físicas, equipamentos e material de expediente, considerando a modalidade de trabalho</label><input type="number" min="0" max="10" step="0.5" class="score-input input-mediadores"></div>
+                    <div class="question-item"><label>4. Relações interpessoais no setor de trabalho</label><input type="number" min="0" max="10" step="0.5" class="score-input input-mediadores"></div>
                 </div>
 
                 <div class="form-group full-width margin-top">
@@ -226,9 +143,9 @@
                 </div>
             </section>
 
-            <!-- Resumo de Notas em Tela -->
-            <section class="card summary-card no-print">
-                <h3>Resumo da Pontuação Ponderada</h3>
+            <!-- Resumo -->
+            <section class="card summary-card">
+                <h3 class="card-header">Resumo da Pontuação Ponderada</h3>
                 <div class="score-summary-grid">
                     <div><span>Conhecimentos:</span> <strong id="lblScoreConhecimentos">0.00</strong></div>
                     <div><span>Habilidades:</span> <strong id="lblScoreHabilidades">0.00</strong></div>
@@ -236,105 +153,98 @@
                     <div><span>Comportamentos/Atitudes:</span> <strong id="lblScoreComportamentos">0.00</strong></div>
                 </div>
                 <div class="total-score-box">
-                    <span>Pontuação Ponderada Nesta Avaliação:</span>
+                    <span>Pontuação Ponderada Total:</span>
                     <strong id="lblScoreTotal">0.00</strong>
                     <small id="lblScoreMax">(Máximo: 4.25)</small>
                 </div>
             </section>
 
-            <div class="actions-area no-print">
+            <div class="actions-area">
                 <button type="button" id="btnDownloadPDF" class="btn-primary">Baixar Relatório em PDF</button>
-                <button type="button" id="btnPrint" class="btn-secondary">Imprimir Diretamente</button>
             </div>
         </form>
 
-        <!-- Documento de Resumo A4 para Exportação PDF / Impressão -->
-        <div id="printArea">
-            <div class="print-header">
-                <h2>UNIVERSIDADE FEDERAL DA FRONTEIRA SUL - UFFS</h2>
-                <h3>ANEXO II - FORMULÁRIO DE AVALIAÇÃO DE DESEMPENHO TAE E DOCENTES GESTORES</h3>
-                <p>Resolução nº 48/CONSUNI CAPGP/UFFS/2022</p>
-                <div class="badge-modalidade" id="pModalidadeBadge">AUTOAVALIAÇÃO</div>
-            </div>
-
-            <table class="print-table">
-                <tr><th colspan="4" class="table-section-title">1. DADOS DE IDENTIFICAÇÃO</th></tr>
-                <tr>
-                    <td><strong>Servidor(a):</strong></td><td id="pNomeServidor"></td>
-                    <td><strong>SIAPE:</strong></td><td id="pSiape"></td>
-                </tr>
-                <tr>
-                    <td><strong>Cargo/Função:</strong></td><td id="pCargoServidor"></td>
-                    <td><strong>Calendário:</strong></td><td id="pPeriodo"></td>
-                </tr>
-                <tr>
-                    <td><strong>Órgão Origem:</strong></td><td>UFFS</td>
-                    <td><strong>Órgão Destino:</strong></td><td id="pOrgaoDestino"></td>
-                </tr>
-                <tr>
-                    <td><strong>Chefia Imediata:</strong></td><td id="pNomeChefia"></td>
-                    <td><strong>Cargo Chefia:</strong></td><td id="pCargoChefia"></td>
-                </tr>
-            </table>
-
-            <table class="print-table margin-top">
-                <thead>
-                    <tr>
-                        <th class="table-section-title">2. RESUMO DAS DIMENSÕES E PONTUAÇÃO</th>
-                        <th class="table-section-title" style="text-align: center;">MÉDIA SIMPLES (0-10)</th>
-                        <th class="table-section-title" style="text-align: center;">PONTUAÇÃO PONDERADA</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Conhecimentos</td>
-                        <td id="pMediaConhecimentos" style="text-align: center;">-</td>
-                        <td id="pPondConhecimentos" style="text-align: center; font-weight: bold;">-</td>
-                    </tr>
-                    <tr>
-                        <td>Habilidades</td>
-                        <td id="pMediaHabilidades" style="text-align: center;">-</td>
-                        <td id="pPondHabilidades" style="text-align: center; font-weight: bold;">-</td>
-                    </tr>
-                    <tr>
-                        <td>Metas</td>
-                        <td id="pMediaMetas" style="text-align: center;">-</td>
-                        <td id="pPondMetas" style="text-align: center; font-weight: bold;">-</td>
-                    </tr>
-                    <tr>
-                        <td>Comportamentos e Atitudes</td>
-                        <td id="pMediaComportamentos" style="text-align: center;">-</td>
-                        <td id="pPondComportamentos" style="text-align: center; font-weight: bold;">-</td>
-                    </tr>
-                    <tr id="rowPrintMediadores">
-                        <td>Mediadores de Desempenho (Uso Estratégico)</td>
-                        <td id="pMediaMediadores" style="text-align: center;">-</td>
-                        <td style="text-align: center;">N/A</td>
-                    </tr>
-                    <tr style="background-color: #f0f0f0;">
-                        <td colspan="2"><strong>PONTUAÇÃO TOTAL DA AVALIAÇÃO OBTIDA</strong></td>
-                        <td id="pTotalObtido" style="text-align: center; font-weight: bold; font-size: 11pt;">0.00</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="print-obs margin-top">
-                <strong>Observações / Justificativas:</strong>
-                <p id="pObservacoes" style="margin-top: 5px;"></p>
-            </div>
-
-            <div class="signatures-container">
-                <div class="signature-box">
-                    <div class="line"></div>
-                    <p><strong id="pSigServidor">Assinatura do Servidor Avaliado</strong></p>
-                    <p>Servidor(a) UFFS</p>
-                    <p>Data: ____/____/________</p>
+        <!-- Template PDF formatado com MIV UFFS -->
+        <div id="pdfRenderWrapper">
+            <div id="printArea" class="pdf-container">
+                <div class="print-header">
+                    <div class="pdf-brand-bar">
+                        <h2>UNIVERSIDADE FEDERAL DA FRONTEIRA SUL</h2>
+                    </div>
+                    <h3>ANEXO II - FORMULÁRIO DE AVALIAÇÃO DE DESEMPENHO</h3>
+                    <p>Resolução nº 48/CONSUNI CAPGP/UFFS/2022</p>
+                    <div class="badge-modalidade" id="pModalidadeBadge">AUTOAVALIAÇÃO</div>
                 </div>
-                <div class="signature-box">
-                    <div class="line"></div>
-                    <p><strong id="pSigChefia">Assinatura da Chefia Imediata</strong></p>
-                    <p>Chefia Imediata (Órgão Cedido)</p>
-                    <p>Data: ____/____/________</p>
+
+                <table class="print-table">
+                    <tr><th colspan="4" class="table-section-title">1. DADOS DE IDENTIFICAÇÃO</th></tr>
+                    <tr>
+                        <td style="width: 20%;"><strong>Servidor(a):</strong></td><td id="pNomeServidor" style="width: 30%;"></td>
+                        <td style="width: 15%;"><strong>SIAPE:</strong></td><td id="pSiape" style="width: 35%;"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cargo/Função:</strong></td><td id="pCargoServidor"></td>
+                        <td><strong>Calendário:</strong></td><td id="pPeriodo"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Órgão Origem:</strong></td><td>UFFS</td>
+                        <td><strong>Órgão Destino:</strong></td><td id="pOrgaoDestino"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chefia Imediata:</strong></td><td id="pNomeChefia"></td>
+                        <td><strong>Cargo Chefia:</strong></td><td id="pCargoChefia"></td>
+                    </tr>
+                </table>
+
+                <table class="print-table margin-top">
+                    <thead>
+                        <tr>
+                            <th class="table-section-title">2. DETALHAMENTO DAS NOTAS ATRIBUÍDAS</th>
+                            <th class="table-section-title" style="text-align: center; width: 80px;">NOTA</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pTableDetailedNotes"></tbody>
+                </table>
+
+                <table class="print-table margin-top">
+                    <thead>
+                        <tr>
+                            <th class="table-section-title">3. RESUMO PONDERADO DAS DIMENSÕES</th>
+                            <th class="table-section-title" style="text-align: center; width: 120px;">MÉDIA SIMPLES</th>
+                            <th class="table-section-title" style="text-align: center; width: 140px;">PONTUAÇÃO PONDERADA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Conhecimentos</td><td id="pMediaConhecimentos" style="text-align: center;">-</td><td id="pPondConhecimentos" style="text-align: center; font-weight: bold;">-</td></tr>
+                        <tr><td>Habilidades</td><td id="pMediaHabilidades" style="text-align: center;">-</td><td id="pPondHabilidades" style="text-align: center; font-weight: bold;">-</td></tr>
+                        <tr><td>Metas</td><td id="pMediaMetas" style="text-align: center;">-</td><td id="pPondMetas" style="text-align: center; font-weight: bold;">-</td></tr>
+                        <tr><td>Comportamentos e Atitudes</td><td id="pMediaComportamentos" style="text-align: center;">-</td><td id="pPondComportamentos" style="text-align: center; font-weight: bold;">-</td></tr>
+                        <tr id="rowPrintMediadores"><td>Mediadores de Desempenho (Uso Institucional)</td><td id="pMediaMediadores" style="text-align: center;">-</td><td style="text-align: center;">N/A</td></tr>
+                        <tr class="table-total-row">
+                            <td colspan="2"><strong>PONTUAÇÃO TOTAL OBTIDA</strong></td>
+                            <td id="pTotalObtido" style="text-align: center; font-weight: bold; font-size: 10pt;">0.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="print-obs margin-top">
+                    <strong>Observações / Justificativas:</strong>
+                    <p id="pObservacoes" style="margin-top: 5px;"></p>
+                </div>
+
+                <div class="signatures-container">
+                    <div class="signature-box">
+                        <div class="line"></div>
+                        <p><strong id="pSigServidor">Assinatura do Servidor Avaliado</strong></p>
+                        <p>Servidor(a) UFFS</p>
+                        <p>Data: ____/____/________</p>
+                    </div>
+                    <div class="signature-box">
+                        <div class="line"></div>
+                        <p><strong id="pSigChefia">Assinatura da Chefia Imediata</strong></p>
+                        <p>Chefia Imediata (Órgão Cedido)</p>
+                        <p>Data: ____/____/________</p>
+                    </div>
                 </div>
             </div>
         </div>
