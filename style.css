@@ -1,12 +1,3 @@
-/* ==========================================================================
-   PALETA OFICIAL UFFS (Manual de Identidade Visual)
-   - Verde UFFS: Pantone 3435 C (#004A2F)
-   - Amarelo UFFS: Pantone 1235 C (#FFB81C)
-   - Azul Institucional: #003366
-   - Cinza Grafite: #333333
-   - Cinza Fundo: #F5F7F6
-   ========================================================================== */
-
 :root {
     --uffs-verde-principal: #004A2F;
     --uffs-amarelo-destaque: #FFB81C;
@@ -17,41 +8,18 @@
     --uffs-branco: #FFFFFF;
 }
 
-/* Base e Tipografia */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', sans-serif; }
+body { background-color: var(--uffs-cinza-fundo); color: var(--uffs-cinza-texto); line-height: 1.5; }
 
-body {
-    background-color: var(--uffs-cinza-fundo);
-    color: var(--uffs-cinza-texto);
-    line-height: 1.5;
-}
-
-/* Cabeçalho da Aplicação */
+/* Cabeçalho Web */
 .header-uffs { 
     background-color: var(--uffs-verde-principal); 
     color: var(--uffs-branco); 
     padding: 24px 0;
     border-bottom: 5px solid var(--uffs-amarelo-destaque);
 }
-
-.header-container { 
-    max-width: 920px; 
-    margin: 0 auto; 
-    padding: 0 20px; 
-}
-
-.brand-area { 
-    display: flex; 
-    align-items: center; 
-    gap: 15px; 
-    margin-bottom: 12px; 
-}
-
+.header-container { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+.brand-area { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
 .logo-box { 
     background-color: var(--uffs-branco); 
     color: var(--uffs-verde-principal); 
@@ -61,52 +29,23 @@ body {
     font-size: 1.4rem; 
     letter-spacing: 2px;
 }
+.institution-title h1 { font-size: 1.25rem; font-weight: bold; letter-spacing: 0.5px; }
+.institution-title p { font-size: 0.85rem; opacity: 0.9; }
+.doc-title { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 10px; }
+.doc-title h2 { font-size: 1.1rem; }
+.doc-title span { font-size: 0.8rem; opacity: 0.85; }
 
-.institution-title h1 { 
-    font-size: 1.25rem; 
-    font-weight: bold; 
-    letter-spacing: 0.5px; 
-}
-
-.institution-title p { 
-    font-size: 0.85rem; 
-    opacity: 0.9; 
-}
-
-.doc-title { 
-    border-top: 1px solid rgba(255, 255, 255, 0.2); 
-    padding-top: 10px; 
-}
-
-.doc-title h2 { 
-    font-size: 1.1rem; 
-}
-
-.doc-title span { 
-    font-size: 0.8rem; 
-    opacity: 0.85; 
-}
-
-/* Layout Principal e Cards */
-.main-container { 
-    max-width: 920px; 
-    margin: 25px auto; 
-    padding: 0 20px; 
-}
-
+/* Form Web */
+.main-container { max-width: 920px; margin: 25px auto; padding: 0 20px; }
 .card { 
     background: var(--uffs-branco); 
     border-radius: 6px; 
     padding: 20px; 
     margin-bottom: 20px; 
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06); 
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06); 
     border-top: 4px solid var(--uffs-verde-principal); 
 }
-
-.modalidade-card { 
-    border-top-color: var(--uffs-azul-institucional); 
-}
-
+.modalidade-card { border-top-color: var(--uffs-azul-institucional); }
 .card-header { 
     color: var(--uffs-verde-principal); 
     font-size: 1.1rem; 
@@ -115,14 +54,7 @@ body {
     padding-bottom: 6px; 
 }
 
-/* Seleção de Modalidade */
-.radio-group { 
-    display: flex; 
-    gap: 15px; 
-    margin-top: 10px; 
-    flex-wrap: wrap; 
-}
-
+.radio-group { display: flex; gap: 15px; margin-top: 10px; flex-wrap: wrap; }
 .radio-option { 
     display: flex; 
     align-items: center; 
@@ -133,67 +65,31 @@ body {
     cursor: pointer; 
     flex: 1; 
     border: 1px solid transparent;
-    transition: all 0.2s ease;
 }
-
 .radio-option:has(input:checked) {
     border-color: var(--uffs-verde-principal);
     background-color: #EBF4F0;
 }
+.radio-option input[type="radio"] { accent-color: var(--uffs-verde-principal); width: 16px; height: 16px; }
 
-.radio-option input[type="radio"] { 
-    accent-color: var(--uffs-verde-principal); 
-    width: 16px; 
-    height: 16px; 
-}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 650px) { .grid-2 { grid-template-columns: 1fr; } }
 
-/* Formulário e Grids */
-.grid-2 { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 14px; 
-}
-
-@media (max-width: 650px) { 
-    .grid-2 { 
-        grid-template-columns: 1fr; 
-    } 
-}
-
-.form-group { 
-    display: flex; 
-    flex-direction: column; 
-}
-
-.full-width { 
-    grid-column: span 2; 
-}
-
-label { 
-    font-weight: bold; 
-    margin-bottom: 4px; 
-    font-size: 0.85rem; 
-    color: #444; 
-}
-
-input[type="text"], 
-input[type="number"], 
-textarea { 
+.form-group { display: flex; flex-direction: column; }
+.full-width { grid-column: span 2; }
+label { font-weight: bold; margin-bottom: 4px; font-size: 0.85rem; color: #444; }
+input[type="text"], input[type="number"], textarea { 
     padding: 9px; 
     border: 1px solid var(--uffs-cinza-borda); 
     border-radius: 4px; 
     font-size: 0.9rem; 
 }
-
-input[type="text"]:focus, 
-input[type="number"]:focus, 
-textarea:focus {
+input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
     outline: none;
     border-color: var(--uffs-verde-principal);
     box-shadow: 0 0 0 2px rgba(0, 74, 47, 0.15);
 }
 
-/* Blocos de Dimensões e Questões */
 .scale-info { 
     background: #E8F1EC; 
     border-left: 4px solid var(--uffs-amarelo-destaque); 
@@ -202,54 +98,14 @@ textarea:focus {
     margin-bottom: 15px; 
     color: var(--uffs-verde-principal);
 }
+.dimensao-block { background: var(--uffs-cinza-fundo); padding: 14px; border-radius: 4px; margin-bottom: 15px; }
+.dimensao-block h4 { color: var(--uffs-verde-principal); margin-bottom: 12px; font-size: 0.95rem; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+.question-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 10px; }
+.question-item label { font-weight: normal; font-size: 0.85rem; flex: 1; }
+.score-input { width: 75px; text-align: center; font-weight: bold; }
 
-.dimensao-block { 
-    background: var(--uffs-cinza-fundo); 
-    padding: 14px; 
-    border-radius: 4px; 
-    margin-bottom: 15px; 
-}
-
-.dimensao-block h4 { 
-    color: var(--uffs-verde-principal); 
-    margin-bottom: 12px; 
-    font-size: 0.95rem; 
-    border-bottom: 1px solid #ddd; 
-    padding-bottom: 4px; 
-}
-
-.question-item { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    margin-bottom: 10px; 
-    gap: 10px; 
-}
-
-.question-item label { 
-    font-weight: normal; 
-    font-size: 0.85rem; 
-    flex: 1; 
-}
-
-.score-input { 
-    width: 75px; 
-    text-align: center; 
-    font-weight: bold; 
-}
-
-/* Resumo da Pontuação */
-.summary-card { 
-    border-top-color: var(--uffs-amarelo-destaque); 
-}
-
-.score-summary-grid { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 10px; 
-    font-size: 0.9rem; 
-}
-
+.summary-card { border-top-color: var(--uffs-amarelo-destaque); }
+.score-summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.9rem; }
 .total-score-box { 
     margin-top: 15px; 
     padding-top: 12px; 
@@ -258,18 +114,9 @@ textarea:focus {
     align-items: center; 
     gap: 10px; 
 }
+.total-score-box strong { font-size: 1.5rem; color: var(--uffs-verde-principal); }
 
-.total-score-box strong { 
-    font-size: 1.5rem; 
-    color: var(--uffs-verde-principal); 
-}
-
-/* Botões de Ação */
-.actions-area { 
-    text-align: center; 
-    margin: 30px 0; 
-}
-
+.actions-area { text-align: center; margin: 30px 0; }
 .btn-primary { 
     background-color: var(--uffs-verde-principal); 
     color: white; 
@@ -282,65 +129,68 @@ textarea:focus {
     transition: background 0.2s;
     border-bottom: 3px solid #002D1D;
 }
-
-.btn-primary:hover { 
-    background-color: #003622; 
-}
-
-.margin-top { 
-    margin-top: 15px; 
-}
+.btn-primary:hover { background-color: #003622; }
+.margin-top { margin-top: 15px; }
 
 /* ==========================================================================
-   ESTRUTURA DE IMPRESSÃO / PDF (Oculta da tela, revelada no download)
+   ESTILO DO PDF: PADRÃO DOCUMENTAL NEUTRO (TEXTOS E BORDAS EM PRETO)
    ========================================================================== */
 
-/* Esconde a div container do PDF para não quebrar o layout da página web */
 #pdfRenderWrapper {
     display: none;
 }
 
-/* Estilização interna da folha A4 a ser capturada pelo html2pdf.js */
+#pdfRenderWrapper.rendering-pdf {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -9999;
+}
+
 .pdf-container { 
     background: white; 
-    padding: 25px; 
-    color: black; 
-    font-size: 8.5pt; 
+    padding: 20px; 
+    color: #000000; 
+    font-size: 9pt; 
 }
 
 .print-header { 
     text-align: center; 
-    margin-bottom: 15px; 
+    margin-bottom: 12px; 
 }
 
 .pdf-brand-bar { 
-    background: var(--uffs-verde-principal); 
-    color: white; 
+    background: #000000; 
+    color: #ffffff; 
     padding: 6px; 
     margin-bottom: 6px; 
 }
 
 .pdf-brand-bar h2 { 
     font-size: 11pt; 
-    letter-spacing: 1px; 
+    letter-spacing: 0.5px; 
+    font-weight: bold;
 }
 
 .print-header h3 { 
     font-size: 9.5pt; 
     margin: 4px 0 2px 0; 
-    color: #222; 
+    color: #000000; 
+    font-weight: bold;
 }
 
 .badge-modalidade { 
     display: inline-block; 
     padding: 3px 10px; 
-    background: #E8F1EC; 
-    color: var(--uffs-verde-principal); 
+    background: #FFFFFF; 
+    color: #000000; 
     font-weight: bold; 
     font-size: 8pt; 
-    border-radius: 3px; 
-    margin-top: 6px;
-    border: 1px solid var(--uffs-verde-principal);
+    border-radius: 2px; 
+    margin-top: 4px;
+    border: 1px solid #000000;
 }
 
 .print-table { 
@@ -349,36 +199,38 @@ textarea:focus {
     margin-bottom: 8px; 
 }
 
-.print-table td, 
-.print-table th { 
-    border: 1px solid #888; 
-    padding: 4px 6px; 
-    font-size: 8pt; 
+.print-table td, .print-table th { 
+    border: 1px solid #000000; 
+    padding: 5px 6px; 
+    font-size: 8.5pt; 
+    color: #000000;
 }
 
 .table-section-title { 
-    background-color: var(--uffs-verde-principal); 
-    color: white; 
+    background-color: #333333; 
+    color: #ffffff !important; 
     text-align: left; 
     font-size: 8.5pt; 
-    padding: 4px 6px; 
+    padding: 5px 6px; 
+    font-weight: bold;
 }
 
 .sub-dim-title { 
-    background-color: #E8F1EC; 
+    background-color: #F0F0F0; 
     font-weight: bold; 
-    color: var(--uffs-verde-principal); 
+    color: #000000; 
 }
 
 .table-total-row { 
-    background-color: #F0F0F0; 
+    background-color: #E6E6E6; 
 }
 
 .print-obs { 
-    border: 1px solid #888; 
+    border: 1px solid #000000; 
     padding: 8px; 
     min-height: 50px; 
-    font-size: 8pt; 
+    font-size: 8.5pt; 
+    color: #000000;
 }
 
 .signatures-container { 
@@ -391,10 +243,11 @@ textarea:focus {
 .signature-box { 
     width: 45%; 
     text-align: center; 
-    font-size: 8pt; 
+    font-size: 8.5pt; 
+    color: #000000;
 }
 
 .signature-box .line { 
-    border-top: 1px solid black; 
+    border-top: 1px solid #000000; 
     margin-bottom: 6px; 
 }
