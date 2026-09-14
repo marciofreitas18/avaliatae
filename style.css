@@ -1,1 +1,75 @@
+:root {
+    --uffs-verde-principal: #00351F;
+    --uffs-verde-destaque: #006B3F;
+    --uffs-azul-secundario: #394ECC;
+    --uffs-fundo: #F4F6F8;
+    --uffs-texto: #333333;
+    --uffs-branco: #FFFFFF;
+    --uffs-cinza-borda: #CCCCCC;
+}
 
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+body { background-color: var(--uffs-fundo); color: var(--uffs-texto); line-height: 1.5; }
+
+.header-uffs { background-color: var(--uffs-verde-principal); color: var(--uffs-branco); padding: 20px 0; }
+.header-container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+.logo-area h1 { font-size: 2rem; letter-spacing: 2px; }
+.logo-area span { font-size: 0.85rem; opacity: 0.8; }
+.header-uffs h2 { margin-top: 8px; font-size: 1.2rem; }
+.header-uffs p { font-size: 0.85rem; opacity: 0.9; }
+
+.main-container { max-width: 900px; margin: 25px auto; padding: 0 20px; }
+.card { background: var(--uffs-branco); border-radius: 6px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-top: 4px solid var(--uffs-verde-destaque); }
+.modalidade-card { border-top-color: var(--uffs-azul-secundario); }
+.card h3 { color: var(--uffs-verde-principal); margin-bottom: 12px; border-bottom: 1px solid var(--uffs-fundo); padding-bottom: 6px; }
+
+.radio-group { display: flex; gap: 15px; margin-top: 10px; flex-wrap: wrap; }
+.radio-option { display: flex; align-items: center; gap: 8px; background: var(--uffs-fundo); padding: 10px 14px; border-radius: 4px; cursor: pointer; flex: 1; }
+.radio-option input[type="radio"] { accent-color: var(--uffs-verde-destaque); width: 16px; height: 16px; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 650px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.form-group { display: flex; flex-direction: column; }
+.full-width { grid-column: span 2; }
+label { font-weight: bold; margin-bottom: 4px; font-size: 0.85rem; }
+input[type="text"], input[type="number"], textarea { padding: 8px; border: 1px solid var(--uffs-cinza-borda); border-radius: 4px; font-size: 0.9rem; }
+
+.scale-info { background: #eef4f0; border-left: 4px solid var(--uffs-verde-destaque); padding: 8px 12px; font-size: 0.85rem; margin-bottom: 15px; }
+.dimensao-block { background: var(--uffs-fundo); padding: 12px; border-radius: 4px; margin-bottom: 15px; }
+.dimensao-block h4 { color: var(--uffs-verde-principal); margin-bottom: 10px; font-size: 1rem; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+.question-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 10px; }
+.question-item label { font-weight: normal; font-size: 0.85rem; flex: 1; }
+.score-input { width: 70px; text-align: center; font-weight: bold; }
+
+.summary-card { border-top-color: var(--uffs-azul-secundario); }
+.score-summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.9rem; }
+.total-score-box { margin-top: 15px; padding-top: 10px; border-top: 2px solid var(--uffs-verde-principal); display: flex; align-items: center; gap: 10px; }
+.total-score-box strong { font-size: 1.4rem; color: var(--uffs-verde-principal); }
+
+.actions-area { text-align: center; margin: 25px 0; }
+.btn-primary { background-color: var(--uffs-verde-destaque); color: white; border: none; padding: 12px 24px; font-size: 1rem; font-weight: bold; border-radius: 4px; cursor: pointer; }
+.btn-primary:hover { background-color: var(--uffs-verde-principal); }
+
+.margin-top { margin-top: 15px; }
+.print-only { display: none; }
+
+@media print {
+    .no-print { display: none !important; }
+    .print-only { display: block !important; }
+    body { background: white; color: black; font-size: 10pt; }
+    .main-container { max-width: 100%; margin: 0; padding: 0; }
+    .print-header { text-align: center; border-bottom: 2px solid var(--uffs-verde-principal); padding-bottom: 8px; margin-bottom: 15px; }
+    .print-header h2 { font-size: 12pt; color: var(--uffs-verde-principal); }
+    .print-header h3 { font-size: 10pt; margin: 4px 0; }
+    .badge-modalidade { display: inline-block; padding: 3px 8px; background: #eee; font-weight: bold; font-size: 9pt; border-radius: 3px; margin-top: 4px; }
+    
+    .print-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+    .print-table td, .print-table th { border: 1px solid #777; padding: 5px; font-size: 9pt; }
+    .table-section-title { background-color: #f0f0f0; text-align: left; }
+    
+    .print-obs { border: 1px solid #777; padding: 8px; min-height: 60px; font-size: 9pt; }
+    .signatures-container { display: flex; justify-content: space-between; margin-top: 40px; page-break-inside: avoid; }
+    .signature-box { width: 45%; text-align: center; font-size: 9pt; }
+    .signature-box .line { border-top: 1px solid black; margin-bottom: 6px; }
+}
