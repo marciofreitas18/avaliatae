@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const isAuto = document.querySelector('input[name="modalidade"]:checked').value === 'auto';
         if (isAuto) {
             blockMediadores.style.display = 'block';
-            rowPrintMediadores.style.display = 'table-row';
+            if (rowPrintMediadores) rowPrintMediadores.style.display = 'table-row';
             document.getElementById('lblScoreMax').innerText = '(Máximo: 4.25)';
         } else {
             blockMediadores.style.display = 'none';
-            rowPrintMediadores.style.display = 'none';
+            if (rowPrintMediadores) rowPrintMediadores.style.display = 'none';
             document.getElementById('lblScoreMax').innerText = '(Máximo: 5.75)';
         }
         calculateScores();
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('pMediaComportamentos').innerText = scores.avgComportamentos.toFixed(1);
         document.getElementById('pPondComportamentos').innerText = scores.pondComportamentos.toFixed(2);
 
-        if (scores.isAuto) {
+        if (scores.isAuto && document.getElementById('pMediaMediadores')) {
             document.getElementById('pMediaMediadores').innerText = getAverage('input-mediadores').toFixed(1);
         }
 
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return scores;
     }
 
-    btnDownloadPDF.addEventListener('click', () => {
+    btnDownloadPDF.addEventListener('click', async () => {
         if (!form.checkValidity()) {
             form.reportValidity();
             return;
@@ -143,8 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const element = document.getElementById('printArea');
         const siapeVal = document.getElementById('siape').value || 'servidor';
 
-        // Torna visível na viewport para a renderização do canvas
-        pdfWrapper.style.display = 'block';
+        // 1. Torna a área visível temporariamente
+        pdfWrapper.classList.add('rendering-pdf');
 
         const opt = {
             margin:       [10, 10, 10, 10],
@@ -155,13 +155,14 @@ document.addEventListener('DOMContentLoaded', () => {
             pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
         };
 
-        html2pdf().set(opt).from(element).save().then(() => {
-            // Oculta novamente após a finalização da gravação do PDF
-            pdfWrapper.style.display = 'none';
-        }).catch(err => {
-            pdfWrapper.style.display = 'none';
+        try {
+            await html2pdf().set(opt).from(element).save();
+        } catch (err) {
             console.error('Erro ao gerar PDF:', err);
-        });
+        } finally {
+            // 2. Oculta novamente após a conclusão
+            pdfWrapper.classList.remove('rendering-pdf');
+        }
     });
 
     updateModalidadeUI();
