@@ -133,63 +133,54 @@ input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
 .margin-top { margin-top: 15px; }
 
 /* ==========================================================================
-   ESTILO DO PDF: PADRÃO DOCUMENTAL NEUTRO (TEXTOS E BORDAS EM PRETO)
+   ESTILO DO PDF (ESTILO NORMAL EM PRETO E BRANCO COM QUEBRAS CORRETAS)
    ========================================================================== */
 
 #pdfRenderWrapper {
     display: none;
 }
 
-#pdfRenderWrapper.rendering-pdf {
-    display: block !important;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: -9999;
-}
-
 .pdf-container { 
     background: white; 
-    padding: 20px; 
+    padding: 15px; 
     color: #000000; 
-    font-size: 9pt; 
+    font-size: 8pt; 
 }
 
 .print-header { 
     text-align: center; 
-    margin-bottom: 12px; 
+    margin-bottom: 10px; 
 }
 
 .pdf-brand-bar { 
     background: #000000; 
     color: #ffffff; 
-    padding: 6px; 
-    margin-bottom: 6px; 
+    padding: 4px; 
+    margin-bottom: 4px; 
 }
 
 .pdf-brand-bar h2 { 
-    font-size: 11pt; 
+    font-size: 10pt; 
     letter-spacing: 0.5px; 
     font-weight: bold;
 }
 
 .print-header h3 { 
-    font-size: 9.5pt; 
-    margin: 4px 0 2px 0; 
+    font-size: 9pt; 
+    margin: 2px 0; 
     color: #000000; 
     font-weight: bold;
 }
 
 .badge-modalidade { 
     display: inline-block; 
-    padding: 3px 10px; 
+    padding: 2px 8px; 
     background: #FFFFFF; 
     color: #000000; 
     font-weight: bold; 
-    font-size: 8pt; 
+    font-size: 7.5pt; 
     border-radius: 2px; 
-    margin-top: 4px;
+    margin-top: 2px;
     border: 1px solid #000000;
 }
 
@@ -197,12 +188,18 @@ input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
     width: 100%; 
     border-collapse: collapse; 
     margin-bottom: 8px; 
+    page-break-inside: auto;
+}
+
+.print-table tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
 }
 
 .print-table td, .print-table th { 
     border: 1px solid #000000; 
-    padding: 5px 6px; 
-    font-size: 8.5pt; 
+    padding: 4px 5px; 
+    font-size: 8pt; 
     color: #000000;
 }
 
@@ -210,13 +207,13 @@ input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
     background-color: #333333; 
     color: #ffffff !important; 
     text-align: left; 
-    font-size: 8.5pt; 
-    padding: 5px 6px; 
+    font-size: 8pt; 
+    padding: 4px 5px; 
     font-weight: bold;
 }
 
 .sub-dim-title { 
-    background-color: #F0F0F0; 
+    background-color: #E6E6E6; 
     font-weight: bold; 
     color: #000000; 
 }
@@ -227,27 +224,28 @@ input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
 
 .print-obs { 
     border: 1px solid #000000; 
-    padding: 8px; 
-    min-height: 50px; 
-    font-size: 8.5pt; 
+    padding: 6px; 
+    min-height: 40px; 
+    font-size: 8pt; 
     color: #000000;
+    page-break-inside: avoid;
 }
 
 .signatures-container { 
     display: flex; 
     justify-content: space-between; 
-    margin-top: 35px; 
+    margin-top: 25px; 
     page-break-inside: avoid; 
 }
 
 .signature-box { 
     width: 45%; 
     text-align: center; 
-    font-size: 8.5pt; 
+    font-size: 8pt; 
     color: #000000;
 }
 
 .signature-box .line { 
     border-top: 1px solid #000000; 
-    margin-bottom: 6px; 
+    margin-bottom: 4px; 
 }
