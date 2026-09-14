@@ -113,7 +113,7 @@ input[type="text"], input[type="number"], textarea {
 .btn-primary:hover { background-color: #003622; }
 
 /* ==========================================================================
-   ESTILO DO PDF (REGRAS ESTREITAS E ALINHAMENTO CONTROLADO)
+   ESTILO DO PDF (TABELA 100% LARGURA COM QUEBRA AUTOMÁTICA DE TEXTO)
    ========================================================================== */
 
 #pdfRenderWrapper {
@@ -125,22 +125,24 @@ input[type="text"], input[type="number"], textarea {
     padding: 10px; 
     color: #000000; 
     font-size: 8pt; 
+    width: 100% !important;
+    box-sizing: border-box;
 }
 
 .print-header { 
     text-align: center; 
-    margin-bottom: 8px; 
+    margin-bottom: 10px; 
 }
 
 .pdf-brand-bar { 
     background: #000000; 
     color: #ffffff; 
-    padding: 4px; 
-    margin-bottom: 4px; 
+    padding: 5px; 
+    margin-bottom: 6px; 
 }
 
 .pdf-brand-bar h2 { 
-    font-size: 9.5pt; 
+    font-size: 10pt; 
     font-weight: bold;
 }
 
@@ -153,7 +155,7 @@ input[type="text"], input[type="number"], textarea {
 
 .badge-modalidade { 
     display: inline-block; 
-    padding: 2px 6px; 
+    padding: 2px 8px; 
     background: #FFFFFF; 
     color: #000000; 
     font-weight: bold; 
@@ -161,37 +163,38 @@ input[type="text"], input[type="number"], textarea {
     border: 1px solid #000000;
 }
 
-/* FORMATAÇÃO E ALINHAMENTO RIGOROSO DAS TABELAS */
+/* REGRA DE LARGURA 100% E QUEBRA AUTOMÁTICA DE TEXTO */
 .print-table { 
-    width: 100%; 
+    width: 100% !important; 
+    max-width: 100% !important;
     border-collapse: collapse; 
-    margin-bottom: 6px; 
-    table-layout: fixed; /* Força respeitar a largura das colunas */
+    margin-bottom: 8px; 
+    table-layout: fixed !important; /* Obriga o navegador a respeitar as larguras definidas */
 }
 
 .print-table tr {
-    page-break-inside: avoid; /* Não quebra linhas ao meio */
+    page-break-inside: avoid;
 }
 
 .print-table td, .print-table th { 
     border: 1px solid #000000; 
-    padding: 3px 5px; 
+    padding: 4px 6px; 
     font-size: 7.5pt; 
     color: #000000;
-    line-height: 1.2;
+    line-height: 1.25;
     vertical-align: middle;
-    word-wrap: break-word; /* Quebra texto longo em várias linhas */
-    overflow-wrap: break-word;
+    white-space: normal !important; /* Permite a quebra de linha normal */
+    word-wrap: break-word !important; /* Quebra palavras se estourarem */
+    overflow-wrap: break-word !important;
 }
 
-/* Alinhamento de colunas de notas e descritores */
-.print-table td.td-desc {
-    width: 88%;
+.cell-desc {
+    width: 85% !important;
     text-align: left;
 }
 
-.print-table td.td-nota {
-    width: 12%;
+.cell-nota {
+    width: 15% !important;
     text-align: center;
     font-weight: bold;
 }
@@ -201,7 +204,7 @@ input[type="text"], input[type="number"], textarea {
     color: #ffffff !important; 
     text-align: left; 
     font-size: 8pt; 
-    padding: 3px 5px; 
+    padding: 4px 6px; 
     font-weight: bold;
 }
 
@@ -219,7 +222,7 @@ input[type="text"], input[type="number"], textarea {
 .print-obs { 
     border: 1px solid #000000; 
     padding: 6px; 
-    min-height: 35px; 
+    min-height: 40px; 
     font-size: 7.5pt; 
     color: #000000;
     page-break-inside: avoid;
@@ -228,7 +231,7 @@ input[type="text"], input[type="number"], textarea {
 .signatures-container { 
     display: flex; 
     justify-content: space-between; 
-    margin-top: 20px; 
+    margin-top: 25px; 
     page-break-inside: avoid; 
 }
 
