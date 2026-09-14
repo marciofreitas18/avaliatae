@@ -119,51 +119,72 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function prepareReportData() {
-        const scores = calculateScores();
+   function prepareReportData() {
+    const scores = calculateScores();
+    const dataHoje = new Date().toLocaleDateString('pt-BR');
 
-        // Data atual automática
-        const dataHoje = new Date().toLocaleDateString('pt-BR');
+    const nomeServidor = document.getElementById('nomeServidor').value || 'Servidor(a)';
+    const nomeChefia = document.getElementById('nomeChefia').value || 'Chefia Imediata';
 
-        document.getElementById('pModalidadeBadge').innerText = scores.isAuto ? 'AUTOAVALIAÇÃO' : 'AVALIAÇÃO DA CHEFIA IMEDIATA';
-        document.getElementById('pNomeServidor').innerText = document.getElementById('nomeServidor').value || 'Não Informado';
-        document.getElementById('pSiape').innerText = document.getElementById('siape').value || 'Não Informado';
-        document.getElementById('pCargoServidor').innerText = document.getElementById('cargoServidor').value || 'Não Informado';
-        document.getElementById('pPeriodo').innerText = document.getElementById('periodoAvaliacao').value || 'Não Informado';
-        document.getElementById('pOrgaoDestino').innerText = document.getElementById('orgaoDestino').value || 'Não Informado';
-        document.getElementById('pNomeChefia').innerText = document.getElementById('nomeChefia').value || 'Não Informado';
-        document.getElementById('pCargoChefia').innerText = document.getElementById('cargoChefia').value || 'Não Informado';
+    // Preenchimento dos dados de identificação
+    document.getElementById('pModalidadeBadge').innerText = scores.isAuto ? 'AUTOAVALIAÇÃO' : 'AVALIAÇÃO DA CHEFIA IMEDIATA';
+    document.getElementById('pNomeServidor').innerText = nomeServidor;
+    document.getElementById('pSiape').innerText = document.getElementById('siape').value || 'Não Informado';
+    document.getElementById('pCargoServidor').innerText = document.getElementById('cargoServidor').value || 'Não Informado';
+    document.getElementById('pPeriodo').innerText = document.getElementById('periodoAvaliacao').value || 'Não Informado';
+    document.getElementById('pOrgaoDestino').innerText = document.getElementById('orgaoDestino').value || 'Não Informado';
+    document.getElementById('pNomeChefia').innerText = nomeChefia;
+    document.getElementById('pCargoChefia').innerText = document.getElementById('cargoChefia').value || 'Não Informado';
 
-        generateDetailedNotesTable(scores.isAuto);
+    generateDetailedNotesTable(scores.isAuto);
 
-        document.getElementById('pMediaConhecimentos').innerText = scores.avgConhecimentos.toFixed(1);
-        document.getElementById('pPondConhecimentos').innerText = scores.pondConhecimentos.toFixed(2);
+    // Preenchimento das médias e pontuações
+    document.getElementById('pMediaConhecimentos').innerText = scores.avgConhecimentos.toFixed(1);
+    document.getElementById('pPondConhecimentos').innerText = scores.pondConhecimentos.toFixed(2);
 
-        document.getElementById('pMediaHabilidades').innerText = scores.avgHabilidades.toFixed(1);
-        document.getElementById('pPondHabilidades').innerText = scores.pondHabilidades.toFixed(2);
+    document.getElementById('pMediaHabilidades').innerText = scores.avgHabilidades.toFixed(1);
+    document.getElementById('pPondHabilidades').innerText = scores.pondHabilidades.toFixed(2);
 
-        document.getElementById('pMediaMetas').innerText = scores.avgMetas.toFixed(1);
-        document.getElementById('pPondMetas').innerText = scores.pondMetas.toFixed(2);
+    document.getElementById('pMediaMetas').innerText = scores.avgMetas.toFixed(1);
+    document.getElementById('pPondMetas').innerText = scores.pondMetas.toFixed(2);
 
-        document.getElementById('pMediaComportamentos').innerText = scores.avgComportamentos.toFixed(1);
-        document.getElementById('pPondComportamentos').innerText = scores.pondComportamentos.toFixed(2);
+    document.getElementById('pMediaComportamentos').innerText = scores.avgComportamentos.toFixed(1);
+    document.getElementById('pPondComportamentos').innerText = scores.pondComportamentos.toFixed(2);
 
-        if (scores.isAuto && document.getElementById('pMediaMediadores')) {
-            document.getElementById('pMediaMediadores').innerText = getAverage('input-mediadores').toFixed(1);
-        }
-
-        document.getElementById('pTotalObtido').innerText = `${scores.totalPonderado.toFixed(2)} / ${scores.isAuto ? '4.25' : '5.75'}`;
-        document.getElementById('pObservacoes').innerText = document.getElementById('observacoes').value || 'Sem observações.';
-
-        document.getElementById('pSigServidor').innerText = document.getElementById('nomeServidor').value || 'Assinatura do Servidor';
-        document.getElementById('pSigChefia').innerText = document.getElementById('nomeChefia').value || 'Assinatura da Chefia';
-
-        // Preenche data automática nos locais de assinatura/emissão
-        const dataElements = document.querySelectorAll('.pDataAtual');
-        dataElements.forEach(el => el.innerText = dataHoje);
-
-        return scores;
+    if (scores.isAuto && document.getElementById('pMediaMediadores')) {
+        document.getElementById('pMediaMediadores').innerText = getAverage('input-mediadores').toFixed(1);
     }
+
+    document.getElementById('pTotalObtido').innerText = `${scores.totalPonderado.toFixed(2)} / ${scores.isAuto ? '4.25' : '5.75'}`;
+    document.getElementById('pObservacoes').innerText = document.getElementById('observacoes').value || 'Sem observações.';
+
+    // LÓGICA DE ASSINATURA ÚNICA
+    const sigContainer = document.getElementById('pSignaturesContainer');
+    
+    if (scores.isAuto) {
+        // Exibe apenas a assinatura do Servidor
+        sigContainer.innerHTML = `
+            <div class="signature-box" style="margin: 0 auto;">
+                <div class="line"></div>
+                <p><strong>${nomeServidor}</strong></p>
+                <p>Servidor(a) Avaliado(a)</p>
+                <p>Data: ${dataHoje}</p>
+            </div>
+        `;
+    } else {
+        // Exibe apenas a assinatura da Chefia Imediata
+        sigContainer.innerHTML = `
+            <div class="signature-box" style="margin: 0 auto;">
+                <div class="line"></div>
+                <p><strong>${nomeChefia}</strong></p>
+                <p>Chefia Imediata (Avaliador)</p>
+                <p>Data: ${dataHoje}</p>
+            </div>
+        `;
+    }
+
+    return scores;
+}
 
     // Função para sanitizar e formatar o nome no arquivo
     function formatFileName(name) {
